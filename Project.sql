@@ -419,16 +419,14 @@ select dd.customer_id
 	 		report_month
         FROM dwh.dwh_delta_update_result) AS updates
         inner join dwh.customer_report_datamart crd
-		on crd.customer_id = updates.customer_id	
+		on crd.customer_id = updates.customer_id;	
  
-		
 	INSERT INTO dwh.load_dates_customer_report_datamart (
         load_dttm
     )
     SELECT GREATEST(COALESCE(MAX(craftsman_load_dttm), NOW()), 
                     COALESCE(MAX(customers_load_dttm), NOW()), 
                     COALESCE(MAX(products_load_dttm), NOW())) 
-        FROM dwh.dwh_delta
+        FROM dwh.dwh_delta;
 
-        select * from dwh.dwh_delta
  
